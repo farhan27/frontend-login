@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-
+import classNames from 'classnames';
 export const Login = () => {
 
     const [passwordStrenght, setPasswordStrengh] = useState();
@@ -13,12 +13,13 @@ export const Login = () => {
     const specialCharPattern = /[#?!@$%^&*-]/g;
     const lengthPattern = /.{8,}/g;
 
+    const disabled=  false;
     // const passwordStrenghtTracker = {
     //     uppercase: watch('password').match(upperCasePattern)
     // }
 
     useEffect(() => {
-        if(typeof watch('password') === 'undefined') return
+        if (typeof watch('password') === 'undefined') return
         const passwordStrenghtTracker = {
             uppercase: watch('password').match(upperCasePattern),
             lowercase: watch('password').match(lowerCasePattern),
@@ -26,18 +27,18 @@ export const Login = () => {
             specialChar: watch('password').match(specialCharPattern),
             lengthChar: watch('password').match(lengthPattern)
         }
-        console.log(passwordStrenghtTracker);
-        console.log(Object.values(passwordStrenghtTracker).filter(value => value).length);
+        //console.log(passwordStrenghtTracker);
+        //console.log(Object.values(passwordStrenghtTracker).filter(value => value).length);
         setPasswordStrengh(Object.values(passwordStrenghtTracker).filter(value => value).length)
     }, [watch('password')])
 
-  
-    console.log(watch('password'));
+
+    //console.log(watch('password'));
     return (
         <form className="flex justify-center" onSubmit={handleSubmit(onSubmit)}>
-          
+
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style={{ width: '400px', height: '500px' }}>
-            <h1 className="font-medium leading-tight text-3xl mt-0 mb-3 flex justify-center">Create your account</h1>
+                <h1 className="font-medium leading-tight text-3xl mt-0 mb-3 flex justify-center">Create your account</h1>
                 <div className="mb-4">
                     <label className="flex text-gray-700 text-sm font-bold mb-2">Username : </label>
                     <input className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -69,7 +70,13 @@ export const Login = () => {
 
                 </div>
                 <div className="flex justify-center">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-64" type="submit">
+                    <button
+                        // class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-64"
+                        className= {classNames(disabled ? 'bg-blue-700' : undefined, 'border font-bold py-2 px-4 rounded-full w-64')}
+                        //"border font-bold py-2 px-4 rounded-full w-64"
+                        type="submit"
+                        disabled={disabled}
+                    >
                         Continue
                     </button>
                 </div>

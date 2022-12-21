@@ -1,6 +1,6 @@
 import { useDrag } from "react-dnd"
 
-export const DragAndDrop = ({ id, name }) => {
+export const DragAndDrop = ({ id, name ,className}) => {
     const [{ isDragging }, drag] = useDrag(() => (
         {
             type: "div",
@@ -13,13 +13,11 @@ export const DragAndDrop = ({ id, name }) => {
         }
     ));
 
-    //console.log(isDragging ? 'drag id' + String(id) : null)
-
     return (
         <div
             ref={drag}
             id={id}
-            className="w-32 bg-red-500 inline-flex mr-2 p-2 rounded flex justify-center">
+            className={className}>
             <p className="text-white">{name}</p>
         </div>
     )

@@ -45,11 +45,10 @@ export const Login = () => {
         setPasswordStrengh(Object.values(passwordStrengthTracker).filter(value => value).length)
     }, [watch('password')])
 
-
     return (
-        <form className="flex justify-center" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex h-screen justify-center items-center" onSubmit={handleSubmit(onSubmit)}>
 
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style={{ width: '400px', height: '500px' }}>
+            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style={{ width: '400px', height: '600px' }}>
                 <h1 className="font-medium leading-tight text-3xl mt-0 mb-3 flex justify-center">Create your account</h1>
                 <InputField register={register} type={'text'} name={'username'} label={'Username :'} />
                 <InputField register={register} type={'text'} name={'email'} label={'Email :'} />
@@ -66,7 +65,7 @@ export const Login = () => {
                 </div>
 
 
-                <div>
+                <div className="mb-10">
                     <ul className="list-disc">
                         <li className="justify-start">Minimum 8 characters</li>
                         <li>Include a mix of uppercase and lowercase letter</li>
@@ -74,10 +73,10 @@ export const Login = () => {
                     </ul>
 
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-8">
                     <button
                         // class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-64"
-                        className={classNames(!isDirty && passwordStrength <5 ? 'bg-gray-300' : undefined, 'border font-bold py-2 px-4 rounded-full w-64')}
+                        className={classNames(passwordStrength <5 ? 'bg-gray-300 text-slate-200' : 'text-white bg-red-600', 'border py-2 px-4 rounded-full w-64')}
                         //"border font-bold py-2 px-4 rounded-full w-64"
                         type="submit"
                         disabled={!isDirty}

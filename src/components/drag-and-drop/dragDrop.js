@@ -1,9 +1,9 @@
 import { useDrag } from "react-dnd"
 
-export const DragAndDrop = ({ id, name ,className}) => {
+export const DragAndDrop = ({ id, name, className, type }) => {
     const [{ isDragging }, drag] = useDrag(() => (
         {
-            type: "div",
+            type: type,
             item: {
                 id: id
             },

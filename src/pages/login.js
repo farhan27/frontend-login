@@ -13,7 +13,7 @@ export const Login = () => {
     const [passwordType, setPasswordType] = useState('password')
     const navigate = useNavigate();
 
-    const { register, handleSubmit, watch, formState: { errors, isDirty } } = useForm();
+    const { register, handleSubmit, watch } = useForm();
     const onSubmit = (data) => {
         navigate('/dashboard')
     }
@@ -22,8 +22,6 @@ export const Login = () => {
     const numericPattern = /[0-9]/g;
     const specialCharPattern = /[#?!@$%^&*-]/g;
     const lengthPattern = /.{8,}/g;
-
-    const disabled = false;
 
     const passwordTypeToggle = () => {
         if (passwordType === 'password') {
@@ -55,7 +53,7 @@ export const Login = () => {
                 <div className="mb-4">
                     <label className="flex text-gray-700 text-sm font-bold mb-2">Password : </label>
                     <input className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type={passwordType} name="password" {...register("password")} />
+                        type={passwordType} name="password" {...register("password")} aria-label={'password-input'} />
                     <FontAwesomeIcon icon={faEye} style={{ marginLeft: '-30px', cursor: 'pointer' }} onClick={passwordTypeToggle} />
                 </div>
                 <div className="mt-4">
@@ -76,10 +74,10 @@ export const Login = () => {
                 <div className="flex justify-center mt-8">
                     <button
                         // class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-64"
-                        className={classNames(passwordStrength <5 ? 'bg-gray-300 text-slate-200' : 'text-white bg-red-600', 'border py-2 px-4 rounded-full w-64')}
+                        className={classNames(passwordStrength < 5 ? 'bg-gray-300 text-slate-200' : 'text-white bg-red-600', 'border py-2 px-4 rounded-full w-64')}
                         //"border font-bold py-2 px-4 rounded-full w-64"
                         type="submit"
-                        disabled={!isDirty}
+                        disabled={passwordStrength < 5}
                     >
                         Continue
                     </button>
